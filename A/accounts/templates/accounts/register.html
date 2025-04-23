@@ -5,8 +5,12 @@
 {% endblock %}
 
 {% block content %}
-    {% csrf_token %}
+
     <h2>Register user</h2>
-    <form method="post">{{ form.as_p }}</form>
-    <input class="btn btn-primary" type="submit" value="Register">
+
+    <form action="" method="post" class="col-md-3" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-primary" type="submit" value="Register">
+    </form>
 {% endblock %}
