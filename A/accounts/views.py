@@ -4,7 +4,7 @@ from django.views import View
 from .forms import UserRegistrationForm, UserLoginForm
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 class UserRegisterView(View):
     form_class = UserRegistrationForm
@@ -42,3 +42,10 @@ class UserLoginView(View):
                 return redirect('home:home')
             messages.error(request, 'Invalid username or password', extra_tags='danger')
         return render(request, self.template_name, {'form': form})
+
+
+class UserLogoutView(View):
+    def get(self, request):
+        logout(request)
+        messages.success(request, 'You have been logged out', extra_tags='success')
+        return redirect('home:home')
