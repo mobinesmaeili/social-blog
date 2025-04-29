@@ -123,6 +123,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.authenticate.EmailBackend',
+]
+
 #login_url = '/accounts/login/' #if you don`t use default app name like "account 's' " you should use this (it`s for LoginRequiredMixin class) in class views
 #or you can use it in base settings
 LOGIN_URL = 'accounts/login'
