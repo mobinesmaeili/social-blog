@@ -122,3 +122,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#login_url = '/accounts/login/' #if you don`t use default app name like "account 's' " you should use this (it`s for LoginRequiredMixin class) in class views
+#or you can use it in base settings
+LOGIN_URL = 'accounts/login'
