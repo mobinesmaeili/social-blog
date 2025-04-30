@@ -25,7 +25,8 @@ class UserRegisterView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            User.objects.create_user(username=cd['username'], email=cd['email'], password=cd['password1'])
+            user = User.objects.create_user(username=cd['username'], email=cd['email'], password=cd['password1'])
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             messages.success(request, 'You have successfully registered', extra_tags='success')
             return redirect('home:home')
         return render(request, self.template_name, {'form': form})
@@ -62,3 +63,9 @@ class UserLogoutView(LoginRequiredMixin ,View):
         logout(request)
         messages.success(request, 'You have been logged out', extra_tags='success')
         return redirect('home:home')
+
+
+class UserProfileView(LoginRequiredMixin, View):
+    def get(self, request, user_id):
+        user = User.objects.get(id=user_id)
+        return render(request, 'accounts/profile.html', {'user': user})
