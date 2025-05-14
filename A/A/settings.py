@@ -131,3 +131,12 @@ AUTHENTICATION_BACKENDS = [
 #login_url = '/accounts/login/' #if you don`t use default app name like "account 's' " you should use this (it`s for LoginRequiredMixin class) in class views
 #or you can use it in base settings
 LOGIN_URL = 'accounts/login'
+
+# Google account
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mobin.esmaeili00@gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_PASSWORD = 'fjwaflzwomfmgozh'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'M-Society'

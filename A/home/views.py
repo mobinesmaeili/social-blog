@@ -33,7 +33,7 @@ class PostUpdateView(LoginRequiredMixin, View):
     form_class = PostCreateUpdateForm
 
     def setup(self, request, *args, **kwargs):
-        self.post_instance = get_object_or_404(post, pk=kwargs['post_id'])
+        self.post_instance = get_object_or_404(Post, pk=kwargs['post_id'])
         return super().setup(request, *args, **kwargs)
 
     def dispatch(self, request, *args, **kwargs):
