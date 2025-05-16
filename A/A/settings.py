@@ -133,10 +133,10 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_URL = 'accounts/login'
 
 # Google account
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'mobin.esmaeili00@gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_PASSWORD = 'fjwaflzwomfmgozh'
+# EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'M-Society'
