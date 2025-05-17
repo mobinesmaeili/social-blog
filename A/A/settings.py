@@ -130,7 +130,7 @@ AUTHENTICATION_BACKENDS = [
 
 #login_url = '/accounts/login/' #if you don`t use default app name like "account 's' " you should use this (it`s for LoginRequiredMixin class) in class views
 #or you can use it in base settings
-LOGIN_URL = 'accounts/login'
+LOGIN_URL = '/accounts/login/'
 
 # Google account
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -9,6 +9,16 @@
         <a href="{% url 'home:post_update' post.id %}" class="btn btn-info">Update</a>
     {% endif %}
 
-    <p><a href="{% url 'accounts:user_profile' post.user.id %}">{{ post.user.username }}</a> - {{ post.updated|date:"y-m-d H:i" }}</p><hr>
-    <p>{{ post.body }}</p>
+    <p><a href="{% url 'accounts:user_profile' post.user.id %}">{{ post.user.username }}</a> - {{ post.updated|date:"y-m-d H:i" }}</p>
+    <p>{{ post.body }}</p><hr>
+
+
+    {% for comment in comments %}
+        <div class="card bg-primary bg-gradient text-white">
+            <p class="card-header">{{ comment.user }} | {{ comment.created|timesince }}</p>
+            <p class="card-body">{{ comment.body }}</p>
+        </div>
+    {% empty %}
+        <p>No Comments Yet!</p>
+    {% endfor %}
 {% endblock %}
