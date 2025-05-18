@@ -12,12 +12,35 @@
     <p><a href="{% url 'accounts:user_profile' post.user.id %}">{{ post.user.username }}</a> - {{ post.updated|date:"y-m-d H:i" }}</p>
     <p>{{ post.body }}</p><hr>
 
+    {% if request.user.is_authenticated %}
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input class="btn btn-info" type="submit" value="send">
+        </form><br/>
+    {% else %}
+        <p class="alert alert-danger">Only logged-in users can write comment!</p>
+    {% endif %}
 
     {% for comment in comments %}
-        <div class="card bg-primary bg-gradient text-white">
+        <div class="card bg-dark bg-gradient text-white">
             <p class="card-header">{{ comment.user }} | {{ comment.created|timesince }}</p>
             <p class="card-body">{{ comment.body }}</p>
-        </div>
+
+            {% if request.user.is_authenticated %}
+                <form action="{% url 'home:add_reply' post.id comment.id %}" method="post" class="">
+                    {% csrf_token %}
+                    {{ reply_form.as_p }}
+                    <input class="btn btn-info" type="submit" value="send">
+                </form>
+            {% endif %}
+
+            {% with replies=comment.rcomments.all %}
+                {% for reply in replies %}
+                    <p class="bg-secondary bg-gradient p-3 m-2">{{ reply.user }}<br/>{{ reply.body }}</p>
+                {% endfor %}
+            {% endwith %}
+        </div><br/>
     {% empty %}
         <p>No Comments Yet!</p>
     {% endfor %}
