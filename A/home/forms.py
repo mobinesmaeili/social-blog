@@ -26,3 +26,8 @@ class CommentReplyForm(forms.ModelForm):
         widgets = {
             'body': forms.Textarea(attrs={'class':'form-control', 'placeholder':'add reply'}),
         }
+
+class PostSearchForm(forms.Form):
+    search = forms.CharField(
+        widget=forms.TextInput(attrs={'class':'form-control'}),
+    )

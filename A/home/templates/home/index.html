@@ -3,8 +3,12 @@
 {% block title %}
     Home
 {% endblock %}
+
 {% block content %}
-    index page
+    <form method="get" action="">
+        {{ form.as_p }}
+        <input type="submit" value="search" class="btn btn-info">
+    </form><br/>
 
     <div class="card">
         {% for post in posts %}
