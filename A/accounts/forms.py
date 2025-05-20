@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from .models import Profile
+
 
 class UserRegistrationForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -29,6 +31,15 @@ class UserRegistrationForm(forms.Form):
         if p1 and p2 and p1 != p2:
             raise ValidationError('Passwords don\'t match')
 
+
 class UserLoginForm(forms.Form):
     username = forms.CharField(label='User name or Email',widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+
+class EditUserForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = Profile
+        fields = ('age', 'bio')
